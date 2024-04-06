@@ -1,31 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/supabase'],
-  shadcn: [
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase'],
+  components: [
     {
-    /**
-     * Prefix for all the imported component
-     */
-    prefix: '',
-    /**
-     * Directory that the component lives in.
-     * @default "./components/ui"
-     */
-    componentDir: './components/ui'
-  },
-  {
-    /**
-     * Prefix for all the imported component
-     */
-    prefix: '',
-    /**
-     * Directory that the component lives in.
-     * @default "./components/ui"
-     */
-    componentDir: './components/'
-  }
-],
+      path: '~/components/ui',
+      extensions: ['.vue'],
+      pathPrefix: false
+    },
+    {
+      path: '~/components',
+      extensions: ['.vue'],
+      pathPrefix: false
+    },
+  ],
 supabase: {
   redirectOptions: {
     login: '/auth',
