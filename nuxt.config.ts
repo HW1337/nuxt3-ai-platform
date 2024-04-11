@@ -19,6 +19,6 @@ supabase: {
     login: '/auth',
     callback: '/confirm',
     exclude: ['/'],
-  },
+  }
 }
 })
