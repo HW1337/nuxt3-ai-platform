@@ -10,8 +10,8 @@
         <CardContent>
           <Auth :supabaseClient="supabaseClient" :appearance="{
             theme: ThemeSupa
-          }" :providers="['github', 'google']"
-          redirectTo=""/>
+          }" :providers="[]"
+          redirectTo="/"/>
         </CardContent>
       </Card>
     </div>
