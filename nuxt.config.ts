@@ -9,6 +9,11 @@ export default defineNuxtConfig({
       pathPrefix: false
     },
     {
+      path: '~/components/shared',
+      extensions: ['.vue'],
+      pathPrefix: false
+    },
+    {
       path: '~/components',
       extensions: ['.vue'],
       pathPrefix: false
@@ -20,5 +25,8 @@ supabase: {
     callback: '/confirm',
     exclude: ['/'],
   }
+},
+runtimeConfig: {
+  openaiKey: '',
 }
 })
