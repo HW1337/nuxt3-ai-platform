@@ -14,6 +14,7 @@
     "clsx": "^2.1.0",
     "lucide-vue-next": "^0.367.0",
     "nuxt": "^3.11.2",
+    "openai": "^4.38.2",
     "radix-vue": "^1.7.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
