@@ -1,0 +1,18 @@
+<template>
+    <div class="h-full flex flex-col gap-y-4 items-center justify-center">
+        <div class="w-10 h-10 relative animate-ping">
+            <img alt="Logo" src="public/favicon.ico" fill />
+        </div>
+        <p v-if="processing" class="text-sm text-muted-foreground">Processing...</p>
+    </div>
+</template>
+
+<script setup lang="ts">
+interface Props {
+    processing?: boolean;
+}
+
+withDefaults(defineProps<Props>(), {
+    processing: true,
+});
+</script>
