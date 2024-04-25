@@ -23,13 +23,27 @@
                 <Loader />
             </div>
             <Empty label="No conversation started." />
+            <div class="flex flex-col-reverse gap-y-4">
+                <div v-for="message in messages" :key="message.content" :class="`p-8 w-full flex
+               items-start gap-x-8 rounded-lg ${message.role === 'user'
+                        ? 'bg-white border border-black/10'
+                        : 'bg-slate-200'
+                    }`">
+                    <UserAvatar v-if="message.role === 'user'" />
+                    <BotAvatar v-if="message.role === 'assistant'" />
+
+                    <p class="text-sm">{{ message.content }}</p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { ChatCompletionRequestMessage } from '~/types.d.ts';
 const prompt = ref('');
 const isLoading = ref(false);
+const messages = ref<ChatCompletionRequestMessage[]>([]);
 </script>
 
 <style scoped></style>
