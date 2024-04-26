@@ -22,7 +22,7 @@
             <div v-if="isLoading" class="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
                 <Loader />
             </div>
-            <Empty label="No conversation started." />
+            <Empty v-if="messages.length === 0 && !isLoading" label="No conversation started." />
             <div class="flex flex-col-reverse gap-y-4">
                 <div v-for="message in messages" :key="message.content" :class="`p-8 w-full flex
                items-start gap-x-8 rounded-lg ${message.role === 'user'
@@ -40,10 +40,40 @@
 </template>
 
 <script setup lang="ts">
-import { ChatCompletionRequestMessage } from '~/types.d.ts';
+import type { ChatCompletionRequestMessage } from '~/types.d';
 const prompt = ref('');
 const isLoading = ref(false);
 const messages = ref<ChatCompletionRequestMessage[]>([]);
+const submitPrompt = async () => {
+  isLoading.value = true;
+  const userMessage: ChatCompletionRequestMessage = {
+    role: 'user',
+    content: prompt.value,
+  };
+  const newMessages = [...messages.value, userMessage];
+  const { data, error } = await useFetch('/api/conversation', {
+    method: 'POST',
+    body: {
+      messages: newMessages,
+    },
+  });
+  if (error.value) {
+    console.log(error.value.statusMessage);
+  }
+  if (data.value) {
+    messages.value = [
+      ...messages.value,
+      userMessage,
+      {
+        role: 'assistant',
+        content: data.value.content as string,
+      },
+    ];
+    await refreshNuxtData('userData');
+  }
+  prompt.value = '';
+  isLoading.value = false;
+};
 </script>
 
 <style scoped></style>
