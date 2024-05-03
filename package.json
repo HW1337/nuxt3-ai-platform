@@ -13,6 +13,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-vue-next": "^0.367.0",
+    "markdown-it": "^14.1.0",
     "nuxt": "^3.11.2",
     "openai": "^4.38.2",
     "radix-vue": "^1.7.0",
@@ -26,6 +27,7 @@
     "@nuxtjs/supabase": "^1.2.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@supabase/auth-ui-shared": "^0.1.8",
+    "@types/markdown-it": "^14.1.1",
     "nuxt-icon": "^0.6.10",
     "typescript": "^5.4.5"
   }
