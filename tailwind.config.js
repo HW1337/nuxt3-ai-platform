@@ -82,5 +82,5 @@ module.exports = {
       },
     },
   },
-  plugins: [animate],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }
