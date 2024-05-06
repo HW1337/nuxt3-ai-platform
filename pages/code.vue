@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Heading title="Code Generation" description="Description" icon="ic:sharp-message" iconColor="text-purple-400"
+        <Heading title="Code Generation" description="Description" icon='ic:sharp-code' iconColor="text-purple-400"
             bgColor="bg-purple500/10"></Heading>
         <div class="px-4 lg:px-8">
             <div>
