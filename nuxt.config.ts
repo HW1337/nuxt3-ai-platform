@@ -28,5 +28,6 @@ supabase: {
 },
 runtimeConfig: {
   openaiKey: '',
+  replicateKey: '',
 }
 })
