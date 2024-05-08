@@ -8,7 +8,7 @@
                     class="rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2">
                     <div class="col-span-12 lg:col-span-10">
                         <div class="m-0 p-0">
-                            <input v-model="prompt" placeholder="Type your question here"
+                            <input v-model="prompt" placeholder="Type your image prompt"
                                 class="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent w-full" />
                         </div>
                     </div>
