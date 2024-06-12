@@ -38,7 +38,7 @@
   
   <script setup lang="ts">
   import { useProModal } from '@/store/useProModal';
-  const proModal = useProModal();
+  const store = useProModal();
   </script>
   
   <style scoped></style>

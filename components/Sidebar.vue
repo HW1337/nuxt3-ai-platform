@@ -25,7 +25,7 @@
             <p>{{ user ? user.apiCount : 0 }} / {{ MAX_COUNT }} Бесплатных генераций</p>
             <Progress v-model="progress" class="w-full" />
           </div>
-          <Button class="w-full" variant="premium">
+          <Button @click="store.onOpen" class="w-full" variant="premium">
             Апгрейд
             <Icon name="lucide:zap" class="w-4 h-4 ml-2 fill-white" />
           </Button>
@@ -36,6 +36,8 @@
 </template>
 
 <script setup lang="ts">
+import { useProModal } from '@/store/useProModal';
+const store = useProModal();
 const currentRoute = useRoute()
 const { data: user, pending } = await useFetch('/api/user', {
   method: 'get',
