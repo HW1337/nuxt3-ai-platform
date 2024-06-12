@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
 
     }
     
-    onst freeTrial = await checkApiLimit(user.id);
+    const freeTrial = await checkApiLimit(user.id);
     const isPro = await checkSubscription(user.id)
     if (!freeTrial && !isPro) {
         throw createError({
