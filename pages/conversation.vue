@@ -41,6 +41,8 @@
 
 <script setup lang="ts">
 import type { ChatCompletionRequestMessage } from '~/types.d';
+import { useProModal } from '@/store/useProModal';
+const store = useProModal();
 const prompt = ref('');
 const isLoading = ref(false);
 const messages = ref<ChatCompletionRequestMessage[]>([]);
@@ -59,6 +61,9 @@ const submitPrompt = async () => {
   });
   if (error.value) {
     console.log(error.value.statusMessage);
+    if (error.value.statusCode === 403) {
+            store.onOpen();
+        }
   }
   if (data.value) {
     messages.value = [

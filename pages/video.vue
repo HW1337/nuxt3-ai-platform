@@ -34,6 +34,8 @@
 
 <script setup lang="ts">
 const prompt = ref('');
+import { useProModal } from '@/store/useProModal';
+const store = useProModal();
 const isLoading = ref(false);
 const video = ref<string>();
 const submitPrompt = async () => {
@@ -47,6 +49,9 @@ const submitPrompt = async () => {
     });
     if (error.value) {
         console.log(error);
+        if (error.value.statusCode === 403) {
+            store.onOpen();
+        }
     }
     if (data.value) {
         video.value = data.value[0];
