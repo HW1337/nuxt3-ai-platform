@@ -34,7 +34,7 @@
 
                     <p v-if="message.content"
                         class="prose-pre:overflow-auto prose-pre:w-full prose-pre:my-2 prose-pre:bg-black/10 prose-pre:p-2 prose-pre:rounded-lg prose-code:bg-black/10 prose-code:rounded-lg prose-code:p-1 text-sm overflow-hidden leading-7"
-                        v-html="$mdRenderer.render(message.content)"> 
+                        v-html="$mdRenderer.render(message.content)">
                     </p>
                 </div>
             </div>
@@ -44,6 +44,8 @@
 
 <script setup lang="ts">
 import type { ChatCompletionRequestMessage } from '~/types.d';
+import { useProModal } from '@/store/useProModal';
+const store = useProModal();
 const { $mdRenderer } = useNuxtApp();
 const prompt = ref('');
 const isLoading = ref(false);
@@ -63,6 +65,9 @@ const submitPrompt = async () => {
     });
     if (error.value) {
         console.log(error.value.statusMessage);
+        if (error.value.statusCode === 403) {
+            store.onOpen();
+        }
     }
     if (data.value) {
         messages.value = [

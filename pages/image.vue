@@ -71,6 +71,8 @@
 
 <script setup lang="ts">
 const prompt = ref('');
+import { useProModal } from '@/store/useProModal';
+const store = useProModal();
 const isLoading = ref(false);
 const photos = ref<string[]>([]);
 const amount = ref('1');
@@ -91,7 +93,7 @@ const submitPrompt = async () => {
     if (error.value) {
         console.log(error.value);
         if (error.value.statusCode === 403) {
-            proModal.onOpen();
+            store.onOpen();
         }
     }
     if (data.value) {
