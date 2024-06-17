@@ -29,5 +29,11 @@ supabase: {
 runtimeConfig: {
   openaiKey: '',
   replicateKey: '',
+  stripeSecret: '',
+  stripeWebhookSecret: '',
+  appUrl: '',
+  public: {
+    publicStripeKey: '',
+  }
 }
 })
