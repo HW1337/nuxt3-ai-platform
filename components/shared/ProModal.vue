@@ -39,6 +39,15 @@
   <script setup lang="ts">
   import { useProModal } from '@/store/useProModal';
   const store = useProModal();
+  const onSubscribe = async () => {
+  const { data } = await useFetch('/api/stripe');
+  console.log(data.value?.url);
+
+  if (data.value) {
+    // @ts-ignore
+    window.location.href = data.value.url;
+  }
+};
   </script>
   
   <style scoped></style>
