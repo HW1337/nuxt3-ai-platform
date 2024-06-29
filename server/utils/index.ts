@@ -69,10 +69,35 @@ export const getApiLimitCount = async (userId: string) => {
 
 const config = useRuntimeConfig();
 export const stripe = new Stripe(config.stripeSecret, {
-    apiVersion: '2024-06-18',
+    apiVersion: '2023-08-16',
     typescript: true
 });
 
 export function absoluteUrl(path: string) {
     return `${config.appUrl}${path}`
+}
+const DAY_IN_MS = 86_400_000;
+
+export const checkSubscription = async (userId: string) => {
+    const userSubscription = await prisma.userSubscription.findUnique({
+        where: {
+            userId
+        },
+        select: {
+            stripeSubscriptionId: true,
+            stripeCurrentPeriodEnd: true,
+            stripeCustomerId: true,
+            stripePriceId: true
+        }
+    })
+
+    if (!userSubscription) {
+        return false;
+    }
+
+    const isValid =
+        userSubscription.stripePriceId &&
+        userSubscription.stripeCurrentPeriodEnd?.getTime()! + DAY_IN_MS > Date.now()
+
+    return !!isValid;
 }
