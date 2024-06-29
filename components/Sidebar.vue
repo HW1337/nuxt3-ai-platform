@@ -50,6 +50,8 @@ const progress = computed(() => {
   }
   return 0;
 });
+
+const { data: isPro, pending: isLoading } = await useFetch('/api/stripe/checkStatus');
 </script>
 
 <style scoped></style>

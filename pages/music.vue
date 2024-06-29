@@ -49,7 +49,7 @@ const submitPrompt = async () => {
     if (error.value) {
         console.log(error);
         if (error.value.statusCode === 403) {
-            proModal.onOpen();
+            store.onOpen();
         }
     }
     if (data.value) {
